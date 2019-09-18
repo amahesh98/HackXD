@@ -1,4 +1,4 @@
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import BernoulliNB
 from sklearn import datasets
 import numpy as np
 import json
@@ -10,12 +10,26 @@ class NaiveBayesModel():
         #Initialize model variables
         with open(trainFilePath) as train:
             self.trainData = json.load(train)
+            # self.trainData = self.cleanData(self.trainData)
         with open(testFilePath) as test:
             self.testData = json.load(test)
+        
         self.uniqueIngredients, self.numUnique = self.getUniqueIngredients(self.trainData)
         self.trainVectors, self.trainLabels = self.getTrainVectors(self.trainData)
-        self.testVectors = self.getTestVectors(self.testData)
-        self.model = GaussianNB()
+        self.testVectors, self.testLabels = self.getTestVectors(self.testData)
+        # self.testVectors = self.getTestVectors(self.testData)
+        self.model = BernoulliNB()
+    
+
+    def getInfo(self):
+        print(self.model.get_params())
+    
+    def cleanData(self,data):
+        newData=[]
+        for entry in data:
+            if(len(entry['ingredients']) > 5):
+                newData.append(entry)
+        return newData
 
     #Get number of unique ingredients
     def getUniqueIngredients(self,trainData):
@@ -26,43 +40,33 @@ class NaiveBayesModel():
                 if ingredient not in ingredientsDictionary:
                     ingredientsDictionary[ingredient] = uniqueIndentifier
                     uniqueIndentifier += 1
-        return ingredientsDictionary, uniqueIndentifier - 1
+        return ingredientsDictionary, uniqueIndentifier
 
     #Get train vectors
     def getTrainVectors(self,trainData):
         #Create trainVectors list and labels list
-        # trainVectors = np.asarray([np.asarray(vector["ingredients"]) for vector in self.trainData])
-        trainLabels = [np.asarray(vector["cuisine"]) for vector in self.trainData]
+        trainLabels = [vector["cuisine"] for vector in self.trainData]
         trainVectors = []
         for item in trainData:
-            featureVector = [0.0] * 65 #max length of an ingredient vector in trainData
-            currentCount = 0
+            featureVector = [0.0] * self.numUnique
             for ingredient in item["ingredients"]:
-                featureVector[currentCount] = self.uniqueIngredients[ingredient]
-                currentCount += 1
-            while currentCount < 65:
-                featureVector[currentCount] = 0
-                currentCount += 1
+                uniqueId = self.uniqueIngredients[ingredient]
+                featureVector[uniqueId] = 1
             trainVectors.append(featureVector)
         return trainVectors,trainLabels
 
     #Get test vectors
     def getTestVectors(self, testData):
         testVectors = []
+        testLabels = [vector["cuisine"] for vector in testData]
         for item in testData:
-            featureVector = [0.0] * 65 #max length of an ingredient vector in testData
-            currentCount = 0
+            featureVector = [0.0] * self.numUnique
             for ingredient in item["ingredients"]:
                 if ingredient in self.uniqueIngredients:
-                    featureVector[currentCount] = self.uniqueIngredients[ingredient]
-                else:
-                    featureVector[currentCount] = 0
-                currentCount += 1
-            while currentCount < 65:
-                featureVector[currentCount] = 0
-                currentCount += 1
+                    uniqueId = self.uniqueIngredients[ingredient]
+                    featureVector[uniqueId] = 1
             testVectors.append(featureVector)
-        return testVectors
+        return testVectors, testLabels
 
      #Train model on trainData
     def trainModel(self):
@@ -71,17 +75,19 @@ class NaiveBayesModel():
     #Make predictions on testData
     def predict(self):
         predictions = self.model.predict(self.testVectors)
-        for item in predictions:
-            print(item)
+        numCorrect = 0
+        totalSamples = len(self.testLabels)
+        for prediction, trueLabel in zip(predictions, self.testLabels):
+            if(prediction == trueLabel):
+                numCorrect += 1
+        print("Accuracy on validation set: %.2f%%" % (100 * (numCorrect / totalSamples)))
 
 
 
     
 def main():
-    # iris = datasets.load_iris()
-    # print(iris.data.shape)
-    trainFile = "train.json"
-    testFile = "test.json"
+    trainFile = "validation_train.json"
+    testFile = "validation_test.json"
     bayesianModel = NaiveBayesModel(trainFile, testFile)
     bayesianModel.trainModel()
     bayesianModel.predict()
