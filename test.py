@@ -1,8 +1,11 @@
 import json
+import sys
+import numpy as np
 
 def sortSet(hashset):
     ingredients = list(hashset)
     ingredients.sort()
+    return ingredients
 
 def binarySearch(ingredientsList, search):
     low = 0
@@ -19,16 +22,31 @@ def binarySearch(ingredientsList, search):
     return ""
 
 
+def playground():
+    with open("test.json") as train:
+        trainData = json.load(train)
+    maxCount = -1
+    for item in trainData:
+        ingredientsVector = item["ingredients"]
+        if (len(ingredientsVector) > maxCount):
+            maxCount = len(ingredientsVector)
+    print(maxCount)
+        
+
+
 
 def main():
-    with open("recipe-ingredients-dataset/train.json") as trainFile:
-        trainData = json.load(trainFile)
-    ingredientsSet = set()
-    for key in trainData:
-        for item in key['ingredients']:
-            ingredientsSet.add(item)
-    sortSet(ingredientsSet)
-    print(binarySearch(list(ingredientsSet), "lettuce"))
+    playground()
+    # programArguments = sys.argv
+    # queryString = sys.argv[1]
+    # with open("train.json") as trainFile:
+    #     trainData = json.load(trainFile)
+    # ingredientsSet = set()
+    # for key in trainData:
+    #     for item in key['ingredients']:
+    #         ingredientsSet.add(item)
+    # ingredientsList = sortSet(ingredientsSet)
+    # print(binarySearch(ingredientsList, queryString))
 
 if __name__ == "__main__":
     main()
