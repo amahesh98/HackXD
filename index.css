@@ -1,0 +1,83 @@
+.flex-grid-fifths {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 15px; */
+   
+  }
+  .flex-grid-fifths > * {
+    width: 20%;
+    
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    padding: 25px;
+  }
+#img1{
+    height: 100vh;
+    padding: 5px;
+    border-radius: 2px;
+    opacity: .7;
+}
+#img1:hover{
+    transform: scale(1.2)
+}
+.color{
+    background-color: black;
+    height: 100vh;
+}
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Global */
+html{
+  min-height: 100%;
+  overflow: hidden;
+}
+body{
+  height: calc(100vh - 8em);
+  padding: 4em;
+  color: rgba(255,255,255,.75);
+  font-family: 'Anonymous Pro', monospace;  
+  background-color: rgb(25,25,25);  
+}
+.line-1{
+    top: 60%;  
+    position: absolute;
+    font-size: 800%;
+    opacity: .85;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+    color: white;
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 15em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,1);}
+  to{border-right-color: transparent;}
+}
+#button{
+  background-color: #DC1F06;
+  color: white;
+  border-radius: 4px;
+  top: 90%;
+  position: absolute;
+  font-size: 30px;
+  opacity: .80;
+  white-space: nowrap;
+}
+#recipes{
+  color: white;
+  font-size: 50px;
+}
+
