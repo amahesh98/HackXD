@@ -86,10 +86,14 @@ html{
 #enter{
   width: 400px;
   height: 40px;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 2%;
   margin-left: 30px; 
   margin-top: 8%;
+  border-style: solid;
+  border-color: #DC1F06;
+  outline: none;
+  
 }
 .ingreds{
   box-shadow: 2px 2px 2px 2px grey;
@@ -98,9 +102,11 @@ html{
   overflow-y: auto;
   border-radius: 4px;
   font-size: 16px;
-  border-style: solid;
-  border-width: 18px;
-  border-color: #FCF8F8;
+  /* border-style: solid; */
+  border: 18px double rgb(142, 148, 153);
+  /* border-width: 18px;
+  border-color: #FCF8F8; */
+  outline-color: black;
 
 }
 #color{

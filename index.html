@@ -24,34 +24,34 @@
             <img id="img1" src="russian.png">
         </div>
         <div>
-            <!-- <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b> -->
+            <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b>
         </div>
 
         <center>
-            <button id="button" onclick="smoothScroll(document.getElementById('second'))" >Find Recipes!</button>
+            <button id="button" onclick="smoothScroll(document.getElementById('second'))">Find Recipes!</button>
         </center>
     </div>
     <div id="second">
         <img id="food" src="food.png">
         <input id="enter" type="text" placeholder="Search ingredients" name='ingredients'>
-        <div class="">
-                <div class="vl"></div>
-                <div class="ingreds" style="width: 30rem;">
-                    <div class="card-header" id="color">
-                        Ingredients
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
+        <div>
+            <div class="vl"></div>
+            <div class="ingreds" style="width: 30rem;">
+                <div class="card-header" id="color">
+                    Ingredients
                 </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -59,28 +59,28 @@
     <!-- <img src="chef.png"> -->
 </body>
 <script>
-    window.smoothScroll = function(target) {
-    var scrollContainer = target;
-    do { //find scroll container
-        scrollContainer = scrollContainer.parentNode;
-        if (!scrollContainer) return;
-        scrollContainer.scrollTop += 1;
-    } while (scrollContainer.scrollTop == 0);
-    
-    var targetY = 0;
-    do { //find the top of target relatively to the container
-        if (target == scrollContainer) break;
-        targetY += target.offsetTop;
-    } while (target = target.offsetParent);
-    
-    scroll = function(c, a, b, i) {
-        i++; if (i > 30) return;
-        c.scrollTop = a + (b - a) / 30 * i;
-        setTimeout(function(){ scroll(c, a, b, i); }, 20);
+    window.smoothScroll = function (target) {
+        var scrollContainer = target;
+        do { //find scroll container
+            scrollContainer = scrollContainer.parentNode;
+            if (!scrollContainer) return;
+            scrollContainer.scrollTop += 1;
+        } while (scrollContainer.scrollTop == 0);
+
+        var targetY = 0;
+        do { //find the top of target relatively to the container
+            if (target == scrollContainer) break;
+            targetY += target.offsetTop;
+        } while (target = target.offsetParent);
+
+        scroll = function (c, a, b, i) {
+            i++; if (i > 30) return;
+            c.scrollTop = a + (b - a) / 30 * i;
+            setTimeout(function () { scroll(c, a, b, i); }, 20);
+        }
+        // start scrolling
+        scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
     }
-    // start scrolling
-    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-}
 
 </script>
 
