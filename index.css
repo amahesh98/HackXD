@@ -13,6 +13,7 @@
   }
   body {
     padding: 25px;
+    overflow-y : auto;
   }
 #img1{
     height: 100vh;
@@ -33,18 +34,11 @@
 /* Global */
 html{
   min-height: 100%;
-  overflow: hidden;
 }
-body{
-  height: calc(100vh - 8em);
-  padding: 4em;
-  color: rgba(255,255,255,.75);
-  font-family: 'Anonymous Pro', monospace;  
-  background-color: rgb(25,25,25);  
-}
+
 .line-1{
     top: 60%;  
-    position: absolute;
+    position: fixed;
     font-size: 800%;
     opacity: .85;
     white-space: nowrap;
@@ -71,13 +65,46 @@ body{
   color: white;
   border-radius: 4px;
   top: 90%;
-  position: absolute;
+  position: fixed;
   font-size: 30px;
   opacity: .80;
   white-space: nowrap;
 }
-#recipes{
-  color: white;
-  font-size: 50px;
+
+
+#second{
+  width: 100%;
+  height: 100%;
+  background-image: url("background.png");
+  opacity: .9;
+}
+#food{
+  height: 50%;
+  float: left;
 }
 
+#enter{
+  width: 400px;
+  height: 40px;
+  border-radius: 2px;
+  padding: 2%;
+  margin-left: 30px; 
+  margin-top: 8%;
+}
+.ingreds{
+  box-shadow: 2px 2px 2px 2px grey;
+  margin-left: 900px;
+  margin-top: -70px;
+  overflow-y: auto;
+  border-radius: 4px;
+  font-size: 16px;
+  border-style: solid;
+  border-width: 18px;
+  border-color: #FCF8F8;
+
+}
+#color{
+  background-color: #DC1F06;
+  color: white;
+  font-size: 20px;
+}
