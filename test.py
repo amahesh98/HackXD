@@ -1,6 +1,14 @@
 import json
 import sys
 import numpy as np
+from flask import Flask, render_template, redirect, request, url_for, send_file, jsonify
+
+app = Flask(__name__)
+
+@app.route('/')
+def my_view():
+    data = main()
+    return render_template('homepage.html', data=json.dumps(data))
 
 def sortSet(hashset):
     ingredients = list(hashset)
@@ -18,7 +26,7 @@ def binarySearch(ingredientsList, search):
             low = mid + 1
         else:
             return ingredientsList[mid]
-    
+
     return ""
 
 
@@ -31,22 +39,22 @@ def playground():
         if (len(ingredientsVector) > maxCount):
             maxCount = len(ingredientsVector)
     print(maxCount)
-        
+
 
 
 
 def main():
-    playground()
-    # programArguments = sys.argv
-    # queryString = sys.argv[1]
-    # with open("train.json") as trainFile:
-    #     trainData = json.load(trainFile)
-    # ingredientsSet = set()
-    # for key in trainData:
-    #     for item in key['ingredients']:
-    #         ingredientsSet.add(item)
-    # ingredientsList = sortSet(ingredientsSet)
-    # print(binarySearch(ingredientsList, queryString))
+    # playground()
+    programArguments = sys.argv
+    #queryString = sys.argv[1]
+    with open("train.json") as trainFile:
+        trainData = json.load(trainFile)
+    ingredientsSet = set()
+    for key in trainData:
+        for item in key['ingredients']:
+            ingredientsSet.add(item)
+    ingredientsList = sortSet(ingredientsSet)
+    return ingredientsList
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
