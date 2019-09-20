@@ -1,0 +1,63 @@
+#enter{
+    width: 500px;
+    height: 40px;
+    border-radius: 2px;
+    padding: 2%;
+    margin-left: 30px; 
+}
+#pic{
+    width: 50%;
+}
+body {
+    background-image: url(cooking1.jpg);
+    width: 100%;
+    height: 1000px;
+    background-size: contain;
+    
+    
+}
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #5faf71;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+.card {
+    margin-left: 988px;
+    margin-top: -50px;
+    max-height: 400px;
+    overflow-y: auto;
+}
