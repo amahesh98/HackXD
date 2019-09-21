@@ -36,11 +36,9 @@
             <img id="img1" src="{{ url_for('static', filename='images/russian.png') }}">
         </div>
         <div id='chefmate'>
-            <!-- <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b> -->
         </div>
 
         <center>
-            <!-- <button id='button' onclick='smoothScroll(document.getElementById('second'))'>Find Recipes!</button> -->
         </center>
     </div>
     <div id="second">
@@ -54,16 +52,7 @@
                 <div class="card-header" id="color">
                     Ingredients
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
+                <ul id='itemsList' class="list-group list-group-flush">
                 </ul>
             </div>
         </div>
@@ -78,8 +67,6 @@
         $("center").append("<button id='button' onclick='smoothScroll(document.getElementById('second'))'>Find Recipes!</button>");
     }
     var exists = true;
-
-    
         
     window.smoothScroll = function (target) {
         var scrollContainer = target;
@@ -129,6 +116,7 @@
         if (e.keyCode === 13) {
             $.get(`/addItem/${$('#autocomplete').val()}`, function(response){
                 console.log("Response:", response)
+                $('#itemsList').append(`<li class='list-group-item'>${$('#autocomplete').val()}</li>`);
                 $('#autocomplete').val('')
             })
         }
