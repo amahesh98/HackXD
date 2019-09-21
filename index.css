@@ -1,0 +1,118 @@
+.flex-grid-fifths {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 15px; */
+   
+  }
+  .flex-grid-fifths > * {
+    width: 20%;
+    
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    padding: 25px;
+    overflow-y : auto;
+  }
+#img1{
+    height: 100vh;
+    padding: 5px;
+    border-radius: 2px;
+    opacity: .7;
+}
+#img1:hover{
+    transform: scale(1.2)
+}
+.color{
+    background-color: black;
+    height: 100vh;
+}
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Global */
+html{
+  min-height: 100%;
+}
+
+.line-1{
+    top: 80%;  
+    left: 10%;
+    position: fixed;
+    font-size: 800%;
+    opacity: .85;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+    color: white;
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 15em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,1);}
+  to{border-right-color: transparent;}
+}
+#button{
+  background-color: #DC1F06;
+  color: white;
+  border-radius: 4px;
+  top: 90%;
+  position: fixed;
+  font-size: 30px;
+  opacity: .80;
+  white-space: nowrap;
+}
+
+
+/* #second{
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/background.png");
+  background-image: url("{{ url_for('static', filename='images/background.png') }}")
+} */
+#food{
+  height: 100%;
+  float: left;
+  margin-left: 3%;
+}
+
+#autocomplete{
+  width: 400px;
+  height: 60px;
+  border-radius: 10px;
+  padding: 2%;
+  margin-left: 80px; 
+  margin-top: 8%;
+  border-style: solid;
+  border-color: #DC1F06;
+  outline: none;
+  
+}
+.ingreds{
+  box-shadow: 2px 2px 2px 4px grey;
+  margin-left: 900px;
+  margin-top: -70px;
+  overflow-y: auto;
+  border-radius: 4px;
+  font-size: 16px;
+  /* border-style: solid; */
+  /* border: 18px double rgb(142, 148, 153); */
+  /* border-width: 18px;
+  border-color: #FCF8F8; */
+  outline-color: black;
+
+}
+#color{
+  background-color: #DC1F06;
+  color: white;
+  font-size: 20px;
+}
