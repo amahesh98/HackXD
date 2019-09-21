@@ -11,29 +11,27 @@ class NaiveBayesModel():
         #Initialize model variables
         with open(trainFilePath) as train:
             self.trainData = json.load(train)
-            # self.trainData = self.cleanData(self.trainData)
         with open(testFilePath) as test:
             self.testData = json.load(test)
-        
         self.uniqueIngredients, self.numUnique = self.getUniqueIngredients(self.trainData)
         self.trainVectors, self.trainLabels = self.getTrainVectors(self.trainData)
         self.testVectors, self.testLabels = self.getTestVectors(self.testData)
-        # self.testVectors = self.getTestVectors(self.testData)
         self.model = BernoulliNB()
-    
 
+    #Get Model Hyperparameters
     def getInfo(self):
         print(self.model.get_params())
-    
-    def cleanData(self,data):
-        newData=[]
+
+    #Remove all samples with less than 5 ingredients
+    def cleanData(self, data):
+        newData = []
         for entry in data:
             if(len(entry['ingredients']) > 5):
                 newData.append(entry)
         return newData
 
     #Get number of unique ingredients
-    def getUniqueIngredients(self,trainData):
+    def getUniqueIngredients(self, trainData):
         ingredientsDictionary = {}
         uniqueIndentifier = 1
         for item in self.trainData:
@@ -44,7 +42,7 @@ class NaiveBayesModel():
         return ingredientsDictionary, uniqueIndentifier
 
     #Get train vectors
-    def getTrainVectors(self,trainData):
+    def getTrainVectors(self, trainData):
         #Create trainVectors list and labels list
         trainLabels = [vector["cuisine"] for vector in self.trainData]
         trainVectors = []
@@ -54,7 +52,7 @@ class NaiveBayesModel():
                 uniqueId = self.uniqueIngredients[ingredient]
                 featureVector[uniqueId] = 1
             trainVectors.append(featureVector)
-        return trainVectors,trainLabels
+        return trainVectors, trainLabels
 
     #Get test vectors
     def getTestVectors(self, testData):
@@ -69,7 +67,7 @@ class NaiveBayesModel():
             testVectors.append(featureVector)
         return testVectors, testLabels
 
-     #Train model on trainData
+    #Train model on trainData
     def trainModel(self):
         self.model.fit(self.trainVectors, self.trainLabels)
 
@@ -83,23 +81,24 @@ class NaiveBayesModel():
                 numCorrect += 1
         print("Accuracy on validation set: %.2f%%" % (100 * (numCorrect / totalSamples)))
 
+    #Predict given one single vector
+    def predictOnSample(self, testVector):
+        totalTests = []
+        featureVector = [0.0] * self.numUnique
+        featureCount = 0
+        for ingredient in testVector:
+            if ingredient in self.uniqueIngredients:
+                uniqueId = self.uniqueIngredients[ingredient]
+                featureVector[uniqueId] = 1
+        totalTests.append(featureVector)
+        return self.model.predict(totalTests)
 
-
-    
 def main():
     trainFile = "validation_train.json"
     testFile = "validation_test.json"
-    # with open("bayes.model", "rb") as pickle_file:
-    #     bayesianModel = pickle.load(pickle_file)
-    # print("done reading")
     bayesianModel = NaiveBayesModel(trainFile, testFile)
     bayesianModel.trainModel()
-    # modelFile = open("bayes.model", 'wb')
-    # pickle.dump(bayesianModel, modelFile)
-    # modelFile.close()
     bayesianModel.predict()
-    
-    
 
 if __name__ == '__main__':
     main()
