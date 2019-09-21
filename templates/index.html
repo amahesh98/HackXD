@@ -40,7 +40,7 @@
         </div>
 
         <center>
-            <button id="button" onclick="smoothScroll(document.getElementById('second'))">Find Recipes!</button>
+            <!-- <button id='button' onclick='smoothScroll(document.getElementById('second'))'>Find Recipes!</button> -->
         </center>
     </div>
     <div id="second">
@@ -74,8 +74,11 @@
 <script>
     if($("body").scrollTop()<20){
         $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='{{ url_for('static', filename='images/chefman.png') }}'></p></b>");
+        $("center").append("<button id='button' onclick='smoothScroll(document.getElementById('second'))'>Find Recipes!</button>");
     }
     var exists = true;
+
+    
         
     window.smoothScroll = function (target) {
         var scrollContainer = target;
@@ -102,11 +105,17 @@
     $("body").scroll(function(){
         if($("body").scrollTop()>=20){
             $("#temp_container").remove();
+            $("#button").remove()
             exists = false;
         } 
         else if($("body").scrollTop()<20 && exists==false){
             $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+            $("center").append("<button id='button' onclick='smoothScroll(document.getElementById('second'))'>Find Recipes!</button>");
         }
+    })
+
+    $('#button').on('click', function(){
+        smoothScroll(document.getElementById('second'))
     })
 
     function donePressed(){
