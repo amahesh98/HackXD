@@ -81,6 +81,7 @@ class NaiveBayesModel():
         for prediction, trueLabel in zip(predictions, self.testLabels):
             if(prediction == trueLabel):
                 numCorrect += 1
+                print(prediction)
         print("Accuracy on validation set: %.2f%%" % (100 * (numCorrect / totalSamples)))
 
 

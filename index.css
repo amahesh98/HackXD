@@ -84,9 +84,9 @@ html{
   margin-left: 3%;
 }
 
-#enter{
+#autocomplete{
   width: 400px;
-  height: 40px;
+  height: 60px;
   border-radius: 10px;
   padding: 2%;
   margin-left: 80px; 
