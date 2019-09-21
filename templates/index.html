@@ -46,7 +46,8 @@
     <div id="second">
         <img id="food" src="{{ url_for('static', filename='images/cloth.png') }}">
             <input id="autocomplete" type="text" placeholder= "Search ingredients" name='ingredients'>
-            <button onclick="donePressed()">DONE</button>
+            <button onclick="donePressed()" style="border: none;
+            color: red; font-size: 40px; border-radius: 4px; background-color: transparent">+</button>
         <div>
             <div class="vl"></div>
             <div class="ingreds" style="width: 30rem;">
@@ -113,6 +114,7 @@
         $.get('/processSearch', function(response){
             console.log("Got response:", response)
         })
+        document.getElementById("autocomplete").value = "";
     }
     $("#autocomplete").on('keyup', function (e) {
         if (e.keyCode === 13) {
