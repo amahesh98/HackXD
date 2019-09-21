@@ -15,7 +15,7 @@ class NaiveBayesModel():
             self.testData = json.load(test)
         self.uniqueIngredients, self.numUnique = self.getUniqueIngredients(self.trainData)
         self.trainVectors, self.trainLabels = self.getTrainVectors(self.trainData)
-        self.testVectors, self.testLabels = self.getTestVectors(self.testData)
+        # self.testVectors, self.testLabels = self.getTestVectors(self.testData)
         self.model = BernoulliNB()
 
     #Get Model Hyperparameters
