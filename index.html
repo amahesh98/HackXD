@@ -12,9 +12,14 @@
         crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<<<<<<< HEAD
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+>>>>>>> UI
 </head>
 
 <body class="color">
@@ -28,6 +33,8 @@
         </div>
         <div>
             <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b>
+        <div id='chefmate'>
+            <!-- <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b> -->
         </div>
 
         <center>
@@ -61,6 +68,49 @@
 
     <!-- <img src="chef.png"> -->
 </body>
+<<<<<<< HEAD
 <script src="index.js"></script>
+=======
+<script>
+    if($("body").scrollTop()<20){
+        $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+    }
+    var exists = true;
+
+    window.smoothScroll = function (target) {
+        
+        var scrollContainer = target;
+        do { //find scroll container
+            scrollContainer = scrollContainer.parentNode;
+            if (!scrollContainer) return;
+            scrollContainer.scrollTop += 1;
+        } while (scrollContainer.scrollTop == 0);
+
+        var targetY = 0;
+        do { //find the top of target relatively to the container
+            if (target == scrollContainer) break;
+            targetY += target.offsetTop;
+        } while (target = target.offsetParent);
+
+        scroll = function (c, a, b, i) {
+            i++; if (i > 30) return;
+            c.scrollTop = a + (b - a) / 30 * i;
+            setTimeout(function () { scroll(c, a, b, i); }, 20);
+        }
+        // start scrolling
+        scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+    }
+    $("body").scroll(function(){
+        if($("body").scrollTop()>=20){
+            $("#temp_container").remove();
+            exists = false;
+        } 
+        else if($("body").scrollTop()<20 && exists==false){
+            $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+        }
+    })
+
+</script>
+>>>>>>> UI
 
 </html>
