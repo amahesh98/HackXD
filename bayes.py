@@ -2,6 +2,7 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn import datasets
 import numpy as np
 import json
+import pickle
 
 class NaiveBayesModel():
 
@@ -88,8 +89,14 @@ class NaiveBayesModel():
 def main():
     trainFile = "validation_train.json"
     testFile = "validation_test.json"
+    # with open("bayes.model", "rb") as pickle_file:
+    #     bayesianModel = pickle.load(pickle_file)
+    # print("done reading")
     bayesianModel = NaiveBayesModel(trainFile, testFile)
     bayesianModel.trainModel()
+    # modelFile = open("bayes.model", 'wb')
+    # pickle.dump(bayesianModel, modelFile)
+    # modelFile.close()
     bayesianModel.predict()
     
     
