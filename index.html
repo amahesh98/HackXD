@@ -12,6 +12,8 @@
         crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body class="color">
@@ -23,8 +25,8 @@
             <img id="img1" src="mexican.png">
             <img id="img1" src="russian.png">
         </div>
-        <div>
-            <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b>
+        <div id='chefmate'>
+            <!-- <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b> -->
         </div>
 
         <center>
@@ -59,7 +61,13 @@
     <!-- <img src="chef.png"> -->
 </body>
 <script>
+    if($("body").scrollTop()<20){
+        $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+    }
+    var exists = true;
+
     window.smoothScroll = function (target) {
+        
         var scrollContainer = target;
         do { //find scroll container
             scrollContainer = scrollContainer.parentNode;
@@ -81,6 +89,15 @@
         // start scrolling
         scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
     }
+    $("body").scroll(function(){
+        if($("body").scrollTop()>=20){
+            $("#temp_container").remove();
+            exists = false;
+        } 
+        else if($("body").scrollTop()<20 && exists==false){
+            $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+        }
+    })
 
 </script>
 
