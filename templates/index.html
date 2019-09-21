@@ -12,20 +12,21 @@
         crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
-        <script type="text/javascript" src="ingredientsList"></script> 
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
+    <script type="text/javascript" src="ingredientsList"></script> 
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel='stylesheet' type='text/css' href='{{ url_for('static', filename='CSS/index.css') }}'>
 </head>
 
 <body class="color">
     <div>
         <div class="flex-grid-fifths">
-            <img id="img1" src="italian.png">
-            <img id="img1" src="chinese.png">
-            <img id="img1" src="greek.png">
-            <img id="img1" src="mexican.png">
-            <img id="img1" src="russian.png">
+            <img id="img1" src="{{ url_for('static', filename='images/italian.png') }}">
+            <img id="img1" src="{{ url_for('static', filename='images/chinese.png') }}">
+            <img id="img1" src="{{ url_for('static', filename='images/greek.png') }}">
+            <img id="img1" src="{{ url_for('static', filename='images/mexican.png') }}">
+            <img id="img1" src="{{ url_for('static', filename='images/russian.png') }}">
         </div>
         <div id='chefmate'>
             <!-- <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b> -->
@@ -36,7 +37,7 @@
         </center>
     </div>
     <div id="second">
-        <img id="food" src="cloth.png">
+        <img id="food" src="{{ url_for('static', filename='images/cloth.png') }}">
             <input id="autocomplete" type="text" placeholder= "Search ingredients" name='ingredients'>
         <div>
             <div class="vl"></div>
@@ -62,9 +63,6 @@
 
     <!-- <img src="chef.png"> -->
 </body>
-<<<<<<< HEAD
-<script src="index.js"></script>
-=======
 <script>
     if($("body").scrollTop()<20){
         $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
@@ -105,6 +103,5 @@
     })
 
 </script>
->>>>>>> UI
 
 </html>
