@@ -22,8 +22,9 @@ def addItem(item):
 def processSearch():
     print("Searching")
     items=session['items']
-    print(Bayes_Model.predictOnSample(items))
-    return jsonify({'result': True})
+    prediction = Bayes_Model.predictOnSample(items)
+    print("Prediction:", prediction)
+    return jsonify({'prediction':prediction[0]})
 
 
 if __name__ == '__main__':

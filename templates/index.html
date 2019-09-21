@@ -43,9 +43,16 @@
     </div>
     <div id="second">
         <img id="food" src="{{ url_for('static', filename='images/cloth.png') }}">
-            <input id="autocomplete" type="text" placeholder= "Search ingredients" name='ingredients'>
-            <button onclick="donePressed()" style="border: none;
-            color: red; font-size: 40px; border-radius: 4px; background-color: transparent">+</button>
+            <input id="autocomplete" type="text" placeholder= "Search ingredients" name='ingredients'><br>
+            <button style="background-color: #DC1F06; color: white;
+                border-radius: 4px;
+                width: 400px;
+                padding: 10px; 
+                margin-top: 30px;
+                margin-left: 80px" onclick="donePressed()"> Show me! 
+            </button>
+            <!-- <button onclick="donePressed()" style="border: none;
+            color: red; font-size: 40px; border-radius: 4px; background-color: transparent">+</button> -->
         <div>
             <div class="vl"></div>
             <div class="ingreds" style="width: 30rem;">
@@ -56,15 +63,8 @@
                 </ul>
             </div>
         </div>
-        <button style="background-color: #DC1F06; color: white;
-        border-radius: 4px;
-        padding: 6px; 
-        margin-top: 100px;
-        maring-left: 200px" > Show me! </button>
+        
     </div>
-
-
-    <!-- <img src="chef.png"> -->
 </body>
 <script>
     if($("body").scrollTop()<20){
@@ -102,7 +102,7 @@
             exists = false;
         } 
         else if($("body").scrollTop()<20 && exists==false){
-            $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+            $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='{{ url_for('static', filename='images/chefman.png') }}'></p></b>");
             $("center").append("<button id='button' onclick='smoothScroll(document.getElementById('second'))'>Find Recipes!</button>");
         }
     })
@@ -116,6 +116,7 @@
             console.log("Got response:", response)
         })
         document.getElementById("autocomplete").value = "";
+        $('#autocomplete').val('')
     }
     $("#autocomplete").on('keyup', function (e) {
         if (e.keyCode === 13) {
