@@ -1,6 +1,10 @@
 from flask import Flask, session, jsonify, render_template, redirect, request
 app=Flask(__name__)
 app.secret_key='ChefMate!!'
+import bayes
+
+Bayes_Model = bayes.NaiveBayesModel('train.json', 'test.json')
+Bayes_Model.trainModel()
 
 @app.route('/')
 def renderIndex():
@@ -17,6 +21,8 @@ def addItem(item):
 @app.route('/processSearch')
 def processSearch():
     print("Searching")
+    items=session['items']
+    print(Bayes_Model.predictOnSample(items))
     return jsonify({'result': True})
 
 
