@@ -12,28 +12,21 @@
         crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
-    <script type="text/javascript" src="ingredientsList"></script> 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel='stylesheet' type='text/css' href='{{ url_for('static', filename='CSS/index.css') }}'>
-    <style>
-        #second{
-            width: 100%;
-            height: 100%;
-            background-image: url("{{ url_for('static', filename='images/background.png') }}")
-        }
-    </style>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
+        <script type="text/javascript" src="ingredientsList"></script> 
+        <script src="index2.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 
 <body class="color">
     <div>
         <div class="flex-grid-fifths">
-            <img id="img1" src="{{ url_for('static', filename='images/italian.png') }}">
-            <img id="img1" src="{{ url_for('static', filename='images/chinese.png') }}">
-            <img id="img1" src="{{ url_for('static', filename='images/greek.png') }}">
-            <img id="img1" src="{{ url_for('static', filename='images/mexican.png') }}">
-            <img id="img1" src="{{ url_for('static', filename='images/russian.png') }}">
+            <img id="img1" src="italian.png">
+            <img id="img1" src="chinese.png">
+            <img id="img1" src="greek.png">
+            <img id="img1" src="mexican.png">
+            <img id="img1" src="russian.png">
         </div>
         <div id='chefmate'>
             <!-- <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b> -->
@@ -44,9 +37,8 @@
         </center>
     </div>
     <div id="second">
-        <img id="food" src="{{ url_for('static', filename='images/cloth.png') }}">
+        <img id="food" src="cloth.png">
             <input id="autocomplete" type="text" placeholder= "Search ingredients" name='ingredients'>
-            <button onclick="donePressed()">DONE</button>
         <div>
             <div class="vl"></div>
             <div class="ingreds" style="width: 30rem;">
@@ -54,7 +46,7 @@
                     Ingredients
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"></li>
+                    <li class="list-group-item" onclick="fillList()"></li>
                     <li class="list-group-item"></li>
                     <li class="list-group-item"></li>
                     <li class="list-group-item"></li>
@@ -76,8 +68,9 @@
         $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
     }
     var exists = true;
-        
+
     window.smoothScroll = function (target) {
+        
         var scrollContainer = target;
         do { //find scroll container
             scrollContainer = scrollContainer.parentNode;
@@ -108,12 +101,6 @@
             $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
         }
     })
-
-    function donePressed(){
-        $.get('/processSearch', function(response){
-            console.log("Got response:", response)
-        })
-    }
     var ingredients = [
         "soft-boiled egg","fermented black beans","buttermilk cornbread","monkfish fillets","coke","butterscotch sauce","fresh coriander","quahog clams","chat masala","dry rub","roasting hen","yardlong beans","cream of chicken soup","albacore tuna in water","mochiko","nonfat chicken broth","yellowtail snapper fillets","torn romain lettuc leav","hard-boiled egg","grated nutmeg","garlic puree","shredded parmesan cheese","holy basil","strawberry jam","hot sausage","lumpia skins","pork tenderloin medallions","white corn tortillas","pasta","lobster meat","porter","reduced sodium black beans","instant yeast","pasta wagon wheel","fennel","pork cubes","candy sprinkles","suckling pig","jambalaya mix","green garlic","merluza","McCormick Poppy Seed","ground cashew","broccoli","fat skimmed chicken broth","dry coconut","nian gao","dried arbol chile","poundcake","gluten free lasagna noodle","penn pasta, cook and drain","small white beans","yogurt cheese","barley","crabmeat","coffee low-fat frozen yogurt","and carrot green pea","cheese soup","arrowroot flour","grapefruit juice","pork shoulder butt","powdered vanilla pudding mix","beet juice","dried peach","chopped celery","canola","unsweetened dried coconut","canned low sodium chicken broth","honey dijon mustard","salt free southwest chipotle seasoning","ground oregano","condensed cream of potato soup","chopped fresh sage","snow pea pods","prepar pesto","kinchay","boneless skinless chicken tenderloins","pansies","capers","chocolate mousse","filé","Knorr® Pasta Sides™ - Chicken flavor","dried fig","curing salt","cactus","jasmine","boneless duck breast","chopped bacon","refrigerated four cheese ravioli","macarons","green tomato relish","peanut butter","shimeji mushrooms","oleo","gold tequila","tilapia","fish sauce","okra","whole grain rotini","crema mexicana","pecans","organic butter","lower sodium chicken broth","avocado","toasted sesame seeds","crystallized ginger","pitted kalamata olives","cream","fresh raspberries","reduced fat provolone cheese","hot tea","chop fine pecan","tex-mex shredded cheese","whole peel tomatoes, undrain and chop","hoisin sauce","dry pasta","french dressing","rajma","crispy rice cereal","channa dal","Guinness Beer","long-grain rice","tomato purée","leg of lamb","Fuji Apple","gyoza wrappers","sliced black olives","acai juice","boneless pork shoulder","oat groats","maca powder","dri basil leaves, crush","white cake mix","char fillets","baby corn","wish-bone light country italian dressing","creole style seasoning","polenta corn meal","canned jalapeno peppers","aged Manchego cheese","long beans","raw cane sugar","brown gravy mix","ice water","beef broth","Crystal Hot Sauce","gluten free all purpose flour","tomatoes with juice","Turkish bay leaves","Stonefire Tandoori Garlic Naan","lean ground meat","jello","katakuriko","lemon vodka","cipollini","fillet medallions","assorted fresh vegetables","ragu old world style sweet tomato basil pasta sauc","relish","double cream","sweet white miso","steak fillets","seafood breader","TACO BELL® Thick & Chunky Mild Salsa","chili con carne","Alfredo sauce","cubed pumpkin","pepper","accent","canned chicken broth","Fuyu persimmons","spot prawns","balm leaves","cucumber salad","meatballs","penne pasta","round loaf","chinese jujubes","pocket bread","cream style cottage cheese","plain whole-milk yogurt","fillets","pumpernickel bread","pineapple preserves","steamed rice","ficelle","saffron","somen","chicken in water","whiskey","duck breast halves","italian meatballs","pot pie","blood orange","tatsoi","lamb shoulder chops","Reblochon","king salmon","fat free greek yogurt","San Marzano Diced Tomatoes","curry paste","panettone","ghee","tortillas","manioc flour","codfish","ancho powder","firmly packed light brown sugar","sandwich bread","vegetable shortening","hot cocoa mix","gingersnap","shiraz","bacon rind","honey-flavored greek style yogurt","pistou","condensed cream of broccoli soup","chile sauce","oat flour","dinner rolls","Mezzetta Sliced Greek Kalamata Olives",
         "almond liqueur","chourico","black sea bass","powdered sugar icing","chinese celery","cannelloni shells","sea scallops","soursop","mostaccioli","nori flakes","umeboshi vinegar","Splenda Brown Sugar Blend","carp","smoked paprika","Italian cheese","strawberry compote","cubed ham","apricot jelly","pomegranate molasses","pork sausage casing","tempura batter","red bell pepper, sliced","Bragg Liquid Aminos","vanilla cream","straight bourbon whiskey","claws","frozen blueberries","rape","baking chocolate","coke zero","gelato","grapeseed oil","fatfree lowsodium chicken broth","miso sesame grilling sauce","Japanese soy sauce","chopmeat","country gravy","Accent Seasoning","whey","pimento stuffed olives","2% low-fat cottage cheese","boneless chicken thighs","wish bone ranch dress","shucked oysters","tamarind pod","tangerine juice","chocolate candy bars","green tea powder","culantro","uncooked rigatoni","asian eggplants","sweet potato vermicelli","frozen spinach","kewra","madeira wine","crimini mushrooms","chicken breast fillets","low-fat plain greek yogurt","durum wheat flour","champagne vinegar","morcilla","manouri","Elmlea Single Light","crusty loaf","ground turkey breast","lacinato kale","balsamic vinegar","whole wheat bread slices","fresh tofu","chunky tomato sauce","calamansi juice","vegetable bouillon cube","Alaskan king crab legs","ginkgo nut","seedless red grapes","reduced sodium refried beans","citrus peel","sesame chili oil","cinnamon graham crackers","masur dal","French lentils","nonfat vanilla frozen yogurt","brill","pork and beans","dried pear","butter crackers","casings","mandarin orange juice","pig's trotters","lard","frozen corn","red mullet","Stonefire Italian Thin Pizza Crust","pummelo","fat-free cottage cheese","white italian tuna in olive oil","gluten-free oyster sauce","meat tenderizer","fat-free parmesan cheese","wood ear mushrooms","Campbell's Condensed Cream of Mushroom Soup","chinese barbecue sauce","ginger paste","dry roasted peanuts","large egg whites","Heath Candy Bars","cilantro root","dried shiitake mushrooms","beef cheek","short-grain rice","Indian spice","long green pepper","romaine lettuce hearts","burger rolls","black","Hawaiian salt","ginger purée","sichuan peppercorn oil","Ragu® Robusto!® Pasta Sauce","anise seed","tart shells","turkey meatballs","salsa","bacon","whole milk ricotta cheese","dried apple","veal rib chops","Yoplait® Greek 2% caramel yogurt","strip loin steak","chipotle","grated cauliflower","sparkling sugar","mcintosh apples","eggnog","navel oranges","celery root","Irish whiskey","lamb fillet","asparagus spears","heeng","potato gnocchi","spareribs","honey liqueur","Bordelaise sauce","hen of the woods","shrimp paste","rib eye steaks","peanut sauce","nonfat block cream cheese","cooked chicken breasts","wasabi paste","dried cascabel chile","white radish","pork ribs","soybean oil","grated parmesan romano","fried wonton strips","fryer chickens","Knorr Chicken Stock Pots","pickled garlic","knorr chicken flavor bouillon cube","frozen fruit","lime slices","american cheese slices","yellow mustard seeds","sardines","thin spaghetti","raw honey","fresh basil","sesame seed paste","v 8 juice","fusilli","mild pork sausage","light soy sauce","sweet paprika","pea eggplants","hearts of palm","light lager","unsalted pecans","balsamic vinaigrette","lamb loin","cole slaw mix","saffron powder","fruitcake","virgin coconut oil","frozen banana leaf","bisquick","dried cornhusks","açai powder","reduced sodium italian style stewed tomatoes","blueberry pie filling","beef","topping","pepperocini","earl grey tea bags","french fried onions","vegetable juice","Hellmann's® Real Mayonnaise","muscadine grapes","Truvía® natural sweetener","smoked turkey",
@@ -139,7 +126,6 @@
         "knoblauch","red wine","red kidney beans","fedelini","endive","extra lean minced beef","shanghai bok choy","Crystal Farms Butter","bitter melon","satsuma orange","butternut squash","soft tofu","dried barberries","black mustard seeds","minced garlic","pinot grigio","whole grain roll","tortelloni","achiote powder","sultana","lemon zest","roasted bell peppers","swanson chicken stock","corn bread crumbs","greek yogurt","flavored vinegar","smoked gouda","free-range eggs","low sodium chicken stock","flavoring","colby cheese","diced ham","fresh cod","veal stock","poppyseeds","pork picnic roast","asafoetida powder","swanson beef broth","garden peas","black bean stir fry sauce","diced celery","veal cutlets","mrs. dash seasoning mix","curly leaf spinach","dried bonito flakes","canadian bacon","cherry pie filling","tomate verde","fresh dill","swede","low-fat tartar sauce","chipotle paste","alphabet pasta","pork rib chops","wheat berries","bertolli vineyard premium collect marinara with burgundi wine sauc","lemon twists","frozen raspberries","sparkling wine","anchovy paste","nonfat evaporated milk","cockles","french onion soup","Spice Islands Ground Cumin Seed","fettuccine pasta","fresh cilantro","nonfat powdered milk","california avocado","gluten free cornmeal","KRAFT Mexican Style Shredded Four Cheese with a TOUCH OF PHILADELPHIA","Knorr Fish Stock Cubes","bologna","psyllium husks","lop chong","soya cheese","finely chopped onion","canned tomatoes","pomegranate seeds","organic cane sugar","arborio rice","golden zucchini","shredded extra sharp cheddar cheese","rice wine","rustic rub","Bisquick Baking Mix","bread dough","sugarcane juice","shredded monterey jack cheese","KNUDSEN 2% Milkfat Low Fat Cottage Cheese","devil's food cake mix","grapes","flounder","red curry paste","lean ground pork","espresso powder","stone-ground cornmeal","corn husks","chinese black bean","smoked sausage","shoulder lamb chops","chinese roast pork","wood mushrooms","cream of coconut","shiso leaves","marrow","monkfish","jeera","salmon roe","soft-wheat flour","salsa verde","pie shell","creamy gravy","fresh angel hair","gram dal","nonfat plain greek yogurt","trout fillet","spelt flour","Progresso Black Beans","agar","korma paste","turkey breast tenderloins","creole seasoning mix","seafood","chicken and rice soup","gluten-free chicken stock","ic pop","steak seasoning","cream ic peach","center cut pork chops","dried rice noodles","chips","coleslaw","bloody mary mix","frozen cranberry juice concentrate","ranch dip mix","goose fat","CURRY GUY Smoked Garam Masala","kabocha squash","pie dough","yellow hominy","golden mushroom soup","pressed tofu","frozen spring roll wrappers","cumin seed","tex mex seasoning","black pudding","petite peas","taco bell home originals","pickled vegetables","vegetables","diced mushrooms","chana dal","polish sausage","coarse salt","dried oregano","green pumpkin seeds","chinese eggplants","Kraft Mayonnaise","low-fat chicken broth","Pillsbury™ classic pizza crust","stewed tomatoes","amaretto liqueur","Jarlsberg","turbot","tuscan sausage","wonton noodles","filet","mackerel","frisee","kosher wine","fat-free reduced-sodium chicken broth","tobiko","canton noodles","sweet pickle relish","pita bread","chicken parts","dry mustard","shell pasta","dukkah","frozen garden peas","lotus leaves","asian","snail shells","knorr homestyl stock   beef","fresh mozzarella","corn kernel whole","yams","young nettle","manchego cheese","white flour","merlot","cucuzza","korean chile","Johnsonville Mild Italian Sausage Links","red anjou pears","bacon grease","Royal Baking Powder","calf liver","orzo pasta","peach preserves","instant espresso powder","tropical fruits","angel food cake","soda water","chicken wingettes","sausage casings","soy crumbles","shungiku","shuck corn","Breakstone’s Sour Cream","picante sauce","scallops","cake yeast","crispy bacon","vinaigrette dressing","radish slices","low-fat sesame-ginger dressing","strawberries","comino","sourdough bread","shredded cheese","low-fat pasta sauce","chillies","whole wheat pasta shells","snapper fillets","chopped leaves","Praline Liqueur","cajun seasoning","marjoram leaves","fish fingers","tapioca pearls","won ton skins","tamale filling","rice cakes","extra-virgin olive oil","coffee ice cream","reduced sodium vegetable broth","small curd cottage cheese","curaçao","cilantro leaves","green figs","mint syrup","stewing steak","dried fish flakes","oil","cake batter","A Taste of Thai Rice Noodles","2% milk shredded mozzarella cheese","frozen sweet corn","adzuki beans","dried lavender blossoms","nonfat yogurt","whole peppercorn","parmigiano-reggiano cheese","ground beef","chocolate chip cookie dough ice cream","maple syrup","roasted cashews","liquor","chicken breast halves","fiddlehead ferns","egg roll wraps","table syrup","rice crackers","allspice","sundried tomato paste","Toulouse sausage","cream of mushroom soup","melon","caesar salad dressing","crumbled cheese","Karo Corn Syrup","puff pastry","hemp seeds","flax egg","Kraft Extra Sharp Cheddar Cheese","dark brown sugar","orange juice concentrate","parmesan cheese","Betty Crocker™ oatmeal cookie mix","toasted slivered almonds","bread ciabatta","pain au levain","anise","mi","chicken demi-glace","ground meat","beef for stew","garlic bulb","friselle","roast pork seasoning mix","non-fat sour cream","preserves","diced potatoes","lamb stock",
         "almond oil","campari","olives","kippers","white grapefruit","carnaroli rice","new potatoes","asian fish sauce","caster","farfalline","chocolate cake mix","liver sausage","umeboshi paste","kamut flour","cooked beetroot","country crock calcium plus vitamin d","ground sausage","beef round","unsweetened almond milk","Knudsen Light Sour Cream","mo hanh","chinese pepper","cola-flavored carbonated beverage","strozzapreti","ham","apple cider vinegar","whole wheat couscous","whole wheat buns","club soda","medium shrimp","asian chili red sauc","Barilla Plus Pasta","coriander","fresh pasta","pear tomatoes","less sodium mushroom flavored soy sauce","lipton onion soup mix","organic coconut milk","pekin duck breast halves","bottled balsamic vinaigrette","dried apple rings","turkey gravy","(    oz.) tomato sauce","bagels","Grand Marnier","lima beans","tater tots","tawny port","baby kale","sunflower kernels","red kidnei beans, rins and drain","white tequila","nutritional yeast","red swiss chard","stir fry beef meat","shrimp tails","provolone cheese","wild asparagus","shellfish","pea pods","aged gouda","manzanilla","soda bread","oregano leaves","refrigerated pizza dough","pea shoots","buttermilk ranch dressing","beef shin","dried currants","light sour cream","granulated white sugar","florets","Japanese mountain yam","low-fat mozzarella cheese","yaki-nori","Kim Crawford Sauvignon Blanc","vegan Worcestershire sauce","amchur","butter salt","oil of orange","raw pistachios","chinese chives","citrus juice","white asparagus","whole wheat pasta","dinosaur kale","low moisture mozzarella","kirby cucumbers","cointreau liqueur","prime rib","wax beans","moose","soft buns","peeled diced tomatoes","dried mission figs"]
     
-        
         $('#autocomplete').autocomplete({
     // serviceUrl: '/autosuggest/service/url',
     // lookup: countriesString,
@@ -163,7 +149,6 @@
         $('#selction-ajax').html('You selected: none');
     }
   });
-
 </script>
 
 </html>
