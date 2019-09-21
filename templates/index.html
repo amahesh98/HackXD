@@ -73,7 +73,7 @@
 </body>
 <script>
     if($("body").scrollTop()<20){
-        $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+        $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='{{ url_for('static', filename='images/chefman.png') }}'></p></b>");
     }
     var exists = true;
         
