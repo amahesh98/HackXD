@@ -55,7 +55,13 @@
             color: red; font-size: 40px; border-radius: 4px; background-color: transparent">+</button> -->
         <div>
             <div class="vl"></div>
-            <div class="ingreds" style="width: 30rem;">
+            <div class="ingreds" style="width: 30rem; box-shadow: 2px 2px 2px 4px grey;
+            margin-left: 900px;
+            margin-top: -130px;
+            overflow-y: auto;
+            border-radius: 4px;
+            font-size: 16px;
+            outline-color: black;">
                 <div class="card-header" id="color">
                     My Ingredients
                 </div>
@@ -121,6 +127,7 @@
     })
 
     function donePressed(){
+        $('#third').remove();
         $.get('/processSearch', function(response){
             console.log("Got response:", response)
             var pred = response['prediction'];
@@ -128,10 +135,10 @@
                 $('body').append("<div id='third'><img id='food' src='{{ url_for('static', filename='images/mexicanpage.png') }}' style='height: 100%; width: 100%;'></div>")
             }
             else if(pred==='italian'){
-                $('body').append("<div id='third'><img id='food' src='{{ url_for('static', filename='images/italianpage.png') }}' style='height: 100%; width: 100%;'></div>")
+                $('body').append("<div id='third'><img id='food' src='{{ url_for('static', filename='images/italianPage.png') }}' style='height: 100%; width: 100%;'></div>")
             }
             else if(pred==='thai'){
-                $('body').append("<div id='third'><img id='food' src='{{ url_for('static', filename='images/thaipage.png') }}' style='height: 100%; width: 100%;'></div>")
+                $('body').append("<div id='third' style=''><img id='food' src='{{ url_for('static', filename='images/thaiPage.png') }}' style='height: 100%; width: 100%;'></div>")
             }
         })
         document.getElementById("autocomplete").value = "";
