@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Chefmate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="icon" href="RT.png" type="image/icon type"> -->
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
+        <script type="text/javascript" src="ingredientsList"></script> 
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body class="color">
+    <div>
+        <div class="flex-grid-fifths">
+            <img id="img1" src="italian.png">
+            <img id="img1" src="chinese.png">
+            <img id="img1" src="greek.png">
+            <img id="img1" src="mexican.png">
+            <img id="img1" src="russian.png">
+        </div>
+        <div id='chefmate'>
+            <!-- <b><p class="line-1 anim-typewriter">C H E F M A T E <img src="chefman.png"></p></b> -->
+        </div>
+
+        <center>
+            <button id="button" onclick="smoothScroll(document.getElementById('second'))">Find Recipes!</button>
+        </center>
+    </div>
+    <div id="second">
+        <img id="food" src="cloth.png">
+        <input id="enter" type="text" placeholder= "Search ingredients" name='ingredients'>
+        <div>
+            <div class="vl"></div>
+            <div class="ingreds" style="width: 30rem;">
+                <div class="card-header" id="color">
+                    Ingredients
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <img src="chef.png"> -->
+</body>
+<script src="index.js"></script>
+<script>
+    if($("body").scrollTop()<20){
+        $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+    }
+    var exists = true;
+        
+    window.smoothScroll = function (target) {
+        var scrollContainer = target;
+        do { //find scroll container
+            scrollContainer = scrollContainer.parentNode;
+            if (!scrollContainer) return;
+            scrollContainer.scrollTop += 1;
+        } while (scrollContainer.scrollTop == 0);
+
+        var targetY = 0;
+        do { //find the top of target relatively to the container
+            if (target == scrollContainer) break;
+            targetY += target.offsetTop;
+        } while (target = target.offsetParent);
+
+        scroll = function (c, a, b, i) {
+            i++; if (i > 30) return;
+            c.scrollTop = a + (b - a) / 30 * i;
+            setTimeout(function () { scroll(c, a, b, i); }, 20);
+        }
+        // start scrolling
+        scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+    }
+    $("body").scroll(function(){
+        if($("body").scrollTop()>=20){
+            $("#temp_container").remove();
+            exists = false;
+        } 
+        else if($("body").scrollTop()<20 && exists==false){
+            $("#chefmate").append("<b id='temp_container'><p class='line-1 anim-typewriter'>C H E F M A T E <img src='chefman.png'></p></b>");
+        }
+    })
+</script>
+</html>
