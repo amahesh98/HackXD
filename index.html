@@ -12,6 +12,9 @@
         crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 
 <body class="color">
@@ -33,7 +36,7 @@
     </div>
     <div id="second">
         <img id="food" src="cloth.png">
-        <input id="enter" type="text" placeholder= "Search ingredients" name='ingredients'>
+            <input id="autocomplete" type="text" placeholder= "Search ingredients" name='ingredients'>
         <div>
             <div class="vl"></div>
             <div class="ingreds" style="width: 30rem;">
@@ -41,15 +44,15 @@
                     Ingredients
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item" onclick="fillList()"></li>
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"></li>
                 </ul>
             </div>
         </div>
@@ -58,30 +61,6 @@
 
     <!-- <img src="chef.png"> -->
 </body>
-<script>
-    window.smoothScroll = function (target) {
-        var scrollContainer = target;
-        do { //find scroll container
-            scrollContainer = scrollContainer.parentNode;
-            if (!scrollContainer) return;
-            scrollContainer.scrollTop += 1;
-        } while (scrollContainer.scrollTop == 0);
-
-        var targetY = 0;
-        do { //find the top of target relatively to the container
-            if (target == scrollContainer) break;
-            targetY += target.offsetTop;
-        } while (target = target.offsetParent);
-
-        scroll = function (c, a, b, i) {
-            i++; if (i > 30) return;
-            c.scrollTop = a + (b - a) / 30 * i;
-            setTimeout(function () { scroll(c, a, b, i); }, 20);
-        }
-        // start scrolling
-        scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-    }
-
-</script>
+<script src="index.js"></script>
 
 </html>

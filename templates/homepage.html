@@ -5,19 +5,22 @@
         <!-- <link rel="icon" href="RT.png" type="image/icon type"> -->
         <link rel="stylesheet" type="text/css" href="../static/homepage.css" media="screen" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <script type="text/javascript" src='../static/homepage.js'> </script>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"</script></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <!-- <script type="text/javascript" src='../static/homepage.js'> </script> -->
     </head>
     <body>
         <script>
-          loadData({{ data | tojson }})
         </script>
-        <form autocomplete="off" action="/action_page.php">
-            <div class="autocomplete" style="width:300px;">
-              <input id="myInput" type="text" name="myCountry" placeholder="Ingredients" oninput="getMatches()">
-            </div>
+        <!-- <form autocomplete="on" action="/action_page.php">
+            <div class="autocomplete" style="width:300px;"> -->
+              <input id="autocomplete" type="text" name="myCountry" placeholder="Ingredients">
+            <!-- </div> -->
             <input type="submit">
-          </form>
+          <!-- </form> -->
     </body>
 
 </html>
+<script type="text/javascript" src='../static/homepage.js'> </script>
+<script src="trial.js"></script>
